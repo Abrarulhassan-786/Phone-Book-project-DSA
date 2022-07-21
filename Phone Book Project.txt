@@ -1,0 +1,129 @@
+print()
+print("*******************************************************************************")
+print("*  Abrar ul Hassan        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~         Muzammil      *")
+print("<-------------------------- WELCOME TO BUGA PHONEBOOK ------------------------>")
+print("*  10970                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~         --------      *")
+print("*******************************************************************************")
+
+class Phone:
+    def __init__(self, PhoneData=None, next=None):
+        self.data = PhoneData
+        self.next = next
+
+class PhoneBook:
+    def __init__(self):
+        self.head = None
+
+    def search_Phone_Data(self, Phone_Data):
+        if self.head is None:
+            print("--No Phone Book Data is Available--")
+            return
+        n = self.head
+        while n is not None:
+            if n.data == Phone_Data:
+                print(str(Phone_Data)+" is Available in Phone Book")
+                return True
+            n = n.next
+        print(" Sorry! Phone Data "+str(Phone_Data)+" is Not Available ")
+        return False
+
+    def Update_Phone_Data(self,old_Phone_Data,New_Phone_Data):
+        if self.head is None:
+            print("Sorry Books are Not Available")
+            return
+        if old_Phone_Data == New_Phone_Data:
+            print("Already! This Book iS Available ")
+            return
+        replace=self.head
+        while replace is not None:
+            if replace.data == old_Phone_Data:
+                replace.data = New_Phone_Data
+                print(str(replace.data)+" Updated Successfully ! THANK YOU ")
+                return
+            replace=replace.next
+        print("Books is Not Available")
+
+    def Phone_Data_Insert(self, Phone_Data):
+        newData = Phone(Phone_Data)
+        if (self.head):
+            current = self.head
+            while (current.next):
+                current = current.next
+            current.next = newData
+        else:
+            self.head =  newData
+
+    def Display_Phone_Book(self):
+        current = self.head
+        while (current):
+            print(current.data)
+            current = current.next
+
+Name=input("Hello : Welcome To Buga PhoneBook---What's Your Name : ")
+userName=input("Mr "+str(Name)+" Please Provide User Name : ")
+passwrad=input("Mr "+str(Name)+" Please Provide User Password : ")
+if ((userName == "Abrar" or userName == "Abrar ul Hassan" or userName == "Muzammil" or userName == "muzammil Ansari") and passwrad
+    =="abrar36987" or userName == "Muzammil1234"):
+    print()
+    print("---Login SuccessFull---")
+    print()
+    LL = PhoneBook()
+    print("<---------------------------------->")
+    LL.Phone_Data_Insert("Abrar ul Hassan")
+    LL.Phone_Data_Insert("03032033694")
+    LL.Phone_Data_Insert("Abrarulhassan@gmail.com")
+    LL.Phone_Data_Insert("Khalid Hussain")
+    LL.Phone_Data_Insert("03026798776")
+    LL.Phone_Data_Insert("KhalidHussian@gmail.com")
+    LL.Display_Phone_Book()
+    print("<---------------------------------->")
+    print()
+    while True:
+        print(" 1.Add Books ")
+        print(" 2.Visit the Whole Books ")
+        print(" 3.Update the Book ")
+        print(" 4.Search Book ")
+        choice = int(input("Enter your Choice Number : "))
+        if choice not in [1, 2, 3, 4]:
+            print("Please Enter the valid Option")
+            continue
+        else:
+            choice = int(choice)
+
+        if choice == 1:
+            name = input("Mr " + str(Name) + "--> Please Insert Name : ")
+            number = input("Mr * " + str(Name) + "--> Please Insert Phone Number : ")
+            email = input("Mr * " + str(Name) + "--> Please Insert Email : ")
+            LL.Phone_Data_Insert(name)
+            LL.Phone_Data_Insert(number)
+            LL.Phone_Data_Insert(email)
+            print("Name : "+str(name)+"\nPhone Number : "+str(number)+"\nEmail : "+str(email))
+            print("<----Stored In Phone Book Successfully---->")
+            print("<----------------Thank You---------------->")
+
+        elif choice == 2:
+            print("----------  DISPLAYING PHONE BOOK  ----------")
+            LL.Display_Phone_Book()
+
+        elif choice == 3:
+            oldbook = input("Mr "+str(Name)+"-->Please Insert OLD : Name or Phone Number or Email : ")
+            newbook = input("Mr "+str(Name)+"-->Please Insert New : Name or Phone Number or Email : ")
+            LL.Update_Phone_Data(oldbook, newbook)
+
+        elif choice == 4:
+            find = input("Mr "+str(Name)+" Please Insert the Name or Phone Number or Email For searching  : ")
+            LL.search_Phone_Data(find)
+        else:
+            print("----Not A valid option----")
+
+        print("\npress Q TO Exit the Program and C for to Continue.....")
+        choice2 = " "
+        while choice2 != "C" and choice2 != "Q":
+            choice2 = input()
+            if choice2 == "Q":
+                print("-----THANKS FOR VISITED BUGA PHONE BOOK------")
+                exit()
+            elif choice2 == "C":
+                continue
+else:
+    print("<---- Incorrect Password or UserNAME ---->")
